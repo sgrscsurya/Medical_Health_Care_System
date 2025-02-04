@@ -18,6 +18,4 @@ public class Incharger {
     @Id
     private int inchargerid;
     private String inpassword;
-
-
 }

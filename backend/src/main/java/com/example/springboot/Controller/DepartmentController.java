@@ -31,7 +31,6 @@ public class DepartmentController {
         }
     }
 
-
     @GetMapping("/GetDept")
     public ResponseEntity<?>GetDept()
     {
