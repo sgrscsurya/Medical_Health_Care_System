@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "./Home.css"; // ✅ Import Home.css
+import logo from "./logo.png"; // ✅ Import Logo
 
 export default function Home() {
   const [usetype, setUserType] = useState("");
@@ -75,6 +76,7 @@ export default function Home() {
   return (
     <>
       <div className="login-container"> {/* ✅ Added missing class */}
+        <img src={logo} alt="Logo" className="logo" /> {/* ✅ Added Logo */}
         <h2 className="title text-center">Healthcare System</h2>
         <div className="login-card"> {/* ✅ Applied missing class */}
           <div>
@@ -96,6 +98,7 @@ export default function Home() {
                 className="form-control"
                 value={inchargerid}
                 onChange={(e) => setUserId(e.target.value)}
+                placeholder="Enter User ID" // ✅ Added Placeholder
               />
             </div>
 
@@ -106,6 +109,7 @@ export default function Home() {
                 className="form-control"
                 value={inpassword}
                 onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter Password" // ✅ Added Placeholder
               />
             </div>
 
