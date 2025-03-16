@@ -1,4 +1,4 @@
-/* Home.css */
+/* Align the entire login form properly */
 .login-container {
     display: flex;
     flex-direction: column;
@@ -6,46 +6,68 @@
     justify-content: center;
     height: 100vh;
     background: linear-gradient(to right, #007bff, #6610f2);
-  }
-  
-  .title {
+    text-align: center; /* Ensures text is centered */
+}
+
+/* Style the logo */
+.logo {
+    width: 100px; /* Adjust logo size */
+    margin-bottom: 15px; /* Space below the logo */
+}
+
+/* Center the title */
+.title {
     color: white;
     font-weight: bold;
+    font-size: 24px;
     margin-bottom: 20px;
-  }
-  
-  .login-card {
+}
+
+/* Style the login card */
+.login-card {
     background: white;
     padding: 25px;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     width: 400px;
-  }
-  
-  .form-group {
+}
+
+/* Ensure form elements are aligned properly */
+.form-group {
     margin-bottom: 15px;
-  }
-  
-  .form-label {
+    text-align: left; /* Align text inside form */
+}
+
+/* Style the form labels */
+.form-label {
     font-weight: bold;
     display: block;
     margin-bottom: 5px;
-  }
-  
-  .form-control {
+}
+
+/* Style the dropdown and input fields */
+.form-control {
     width: 100%;
     border-radius: 5px;
     border: 2px solid #ccc;
     padding: 10px;
     transition: 0.3s;
-  }
-  
-  .form-control:focus {
+}
+
+/* Add focus effect */
+.form-control:focus {
     border-color: #007bff;
     box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
-  }
-  
-  .login-btn {
+}
+
+/* Align the login button properly */
+.text-end {
+    text-align: center; /* Centering the button */
+    margin-top: 10px;
+}
+
+/* Style the login button */
+.login-btn {
     width: 100%;
     background: #007bff;
     border: none;
@@ -55,9 +77,9 @@
     border-radius: 5px;
     transition: 0.3s;
     cursor: pointer;
-  }
-  
-  .login-btn:hover {
+}
+
+/* Button hover effect */
+.login-btn:hover {
     background: #0056b3;
-  }
-  
+}
