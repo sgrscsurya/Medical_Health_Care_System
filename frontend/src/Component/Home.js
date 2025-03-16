@@ -1,9 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import "./Home.css";
-import homelogo from "./homelogo.png";  // Import the image
+import "./Home.css"; // ✅ Import Home.css
 
 export default function Home() {
   const [usetype, setUserType] = useState("");
@@ -18,16 +17,17 @@ export default function Home() {
       return;
     }
 
-    if (usetype == 1) {
-      if (!inchargerid) {
-        toast.error("Please Enter User ID");
-        return;
-      }
+    if (!inchargerid) {
+      toast.error("Please Enter User ID");
+      return;
+    }
 
-      if (!inpassword) {
-        toast.error("Please Enter Password");
-        return;
-      }
+    if (!inpassword) {
+      toast.error("Please Enter Password");
+      return;
+    }
+
+    if (usetype == 1) {
       const obj = { inchargerid, inpassword };
       axios.post("http://localhost:8080/userLogin", obj).then((res) => {
         if (res.data === "Login Successfully") {
@@ -37,22 +37,9 @@ export default function Home() {
         }
       });
     } else if (usetype == 2) {
-      if (!inchargerid) {
-        toast.error("Please Enter User ID");
-        return;
-      }
-
-      if (!inpassword) {
-        toast.error("Please Enter Password");
-        return;
-      }
-
       sessionStorage.setItem("hospitalid", inchargerid);
-
       axios
-        .get(
-          `http://localhost:8080/chkHospitalLogin/${inchargerid}/${inpassword}`
-        )
+        .get(`http://localhost:8080/chkHospitalLogin/${inchargerid}/${inpassword}`)
         .then((res) => {
           if (res.data === "Correct Password") {
             navigate("/hospital");
@@ -61,21 +48,9 @@ export default function Home() {
           }
         });
     } else if (usetype == 3) {
-      if (!inchargerid) {
-        toast.error("Please Enter User ID");
-        return;
-      }
-
-      if (!inpassword) {
-        toast.error("Please Enter Password");
-        return;
-      }
-
       sessionStorage.setItem("insuranceid", inchargerid);
       axios
-        .get(
-          `http://localhost:8080/chkInsuranceLogin/${inchargerid}/${inpassword}`
-        )
+        .get(`http://localhost:8080/chkInsuranceLogin/${inchargerid}/${inpassword}`)
         .then((res) => {
           if (res.data === "Correct password") {
             navigate("/insurance");
@@ -84,21 +59,9 @@ export default function Home() {
           }
         });
     } else if (usetype == 4) {
-      if (!inchargerid) {
-        toast.error("Please Enter User ID");
-        return;
-      }
-
-      if (!inpassword) {
-        toast.error("Please Enter Password");
-        return;
-      }
-
       sessionStorage.setItem("doctorid", inchargerid);
       axios
-        .get(
-          `http://localhost:8080/chkDoctorLogin/${inchargerid}/${inpassword}`
-        )
+        .get(`http://localhost:8080/chkDoctorLogin/${inchargerid}/${inpassword}`)
         .then((res) => {
           if (res.data === "Correct Password") {
             navigate("/doctor");
@@ -111,56 +74,45 @@ export default function Home() {
 
   return (
     <>
-      <div className="container">
-        <div className="logo-container">
-          <img src={homelogo} alt="Healthcare Logo" className="home-logo" />
-        </div>
-        <h2 className="text-center mb-4">Healthcare System</h2>
-        <div className="card p-1 bg-warning">
-          <div className="card p-4 ">
-            <div>
-              <div className="mb-3">
-                <label>Select User Type</label>
-                <select
-                  className="form-select mb-3"
-                  onChange={(e) => setUserType(e.target.value)}
-                >
-                  <option value={0}>--Select--</option>
-                  <option value={1}>Admin</option>
-                  <option value={2}>Hospital</option>
-                  <option value={3}>Insurance</option>
-                  <option value={4}>Doctor</option>
-                </select>
-              </div>
-              <div className="mb-3">
-                <label>Enter User ID</label>
-                <input
-                  type="text"
-                  className="form-control border-2"
-                  value={inchargerid}
-                  onChange={(e) => setUserId(e.target.value)}
-                  placeholder="Enter your User ID"  // Added placeholder
-                />
-              </div>
-              <div className="mb-3">
-                <label>Enter Password</label>
-                <input
-                  type="password"
-                  className="form-control border-2"
-                  value={inpassword}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Enter your Password"  // Added placeholder
-                />
-              </div>
+      <div className="login-container"> {/* ✅ Added missing class */}
+        <h2 className="title text-center">Healthcare System</h2>
+        <div className="login-card"> {/* ✅ Applied missing class */}
+          <div>
+            <div className="form-group">
+              <label className="form-label">Select User Type</label>
+              <select className="form-control" onChange={(e) => setUserType(e.target.value)}>
+                <option value={0}>--Select--</option>
+                <option value={1}>Admin</option>
+                <option value={2}>Hospital</option>
+                <option value={3}>Insurance</option>
+                <option value={4}>Doctor</option>
+              </select>
+            </div>
 
-              <div className="text-end">
-                <input
-                  type="button"
-                  className="btn btn-outline-info me-3"
-                  onClick={handlelogin}
-                  value="Login"
-                />
-              </div>
+            <div className="form-group">
+              <label className="form-label">Enter User ID</label>
+              <input
+                type="text"
+                className="form-control"
+                value={inchargerid}
+                onChange={(e) => setUserId(e.target.value)}
+              />
+            </div>
+
+            <div className="form-group">
+              <label className="form-label">Enter Password</label>
+              <input
+                type="password"
+                className="form-control"
+                value={inpassword}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+
+            <div className="text-end">
+              <button className="login-btn" onClick={handlelogin}>
+                Login
+              </button>
             </div>
           </div>
         </div>
