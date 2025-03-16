@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "./Home.css";
-import homelogo from "./homelogo.png";  // Import the image
+import homelogo from "./homelogo.jpg";  // Import the image
 
 export default function Home() {
   const [usetype, setUserType] = useState("");
